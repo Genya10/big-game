@@ -1,3 +1,30 @@
 .button {
-    @apply bg-primary ;
+    @apply text-lg py-2 px-3 rounded-lg bg-gradient-to-t from-yellow-700 to-yellow-300
+     text-[#d06e14] font-bold text-xl transition-all duration-200 ease-in-out;
+     box-shadow: -1px 3px 0 #b23909;
+
+     &:hover {
+        box-shadow: 0 2px 0 #b23909;
+     }
+
+    &.secondary {
+        @apply from-brown-700 to-brown-300 text-[#efa145];
+        box-shadow: -1px 3px 0 #642206;
+
+    &:hover {
+        box-shadow: 0 2px 0 #642206;
+    }
+    }
+
+    &.gray { 
+        @apply from-gray-500 to-gray-300 text-gray-700;
+        box-shadow: 0 2px 0 #434343;
+
+        &:hover {
+            box-shadow: 0 2px 0 #434343;
+        }
+    }
+    &.circle{
+        @apply rounded-full py-3 px-3;
+    }
 }

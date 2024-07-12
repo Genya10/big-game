@@ -3,7 +3,7 @@ const yellow = {
     400:'#ffc043',
     500:'#f3b13c',
     600:'#eaae3c',
-    700:'#eda434',
+    700:'#e89b1e',
 }
 
 const brown = {
@@ -31,9 +31,9 @@ export const COLORS = {
     black:brown[950],
     white:'#edf1ee',
     transparent:'transparent',
-    ...yellow,
-    ...brown,
-    ...gray
+    yellow,
+    brown,
+    gray
 }
 
 /*module.exports ={
