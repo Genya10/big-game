@@ -9,8 +9,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement>{
 export function Button({children, ...rest}: Props){
     return (
         <button className = {
-            cn(cl.button, rest.className)
-        }
+            cn(cl.button, rest.className)}       
         {...rest}>{children}</button>
     )
 }
