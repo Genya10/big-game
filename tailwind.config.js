@@ -15,9 +15,17 @@ export default {
    plugin(({addUtilities, theme})=>{
     addUtilities({
     '.primary-gradient':{
-      background:`linear-gradient(90deg, 
-        ${COLORS.yellow[700]}} 0%, ${COLORS.yellow[300]} 100%)`,
-      }
+      background:`linear-gradient(to top , 
+        ${theme('colors.yellow.700')},${theme('colors.yellow.300')})`,
+    },
+    '.secondary-gradient':{
+      background:`linear-gradient(to top , 
+        ${theme('colors.brown.700')},${theme('colors.brown.300')})`,
+    },
+    '.gray-gradient':{
+      background:`linear-gradient(to top , 
+        ${theme('colors.gray.500')},${theme('colors.gray.300')})`,
+    },
     })
    })
   ],
