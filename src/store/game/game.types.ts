@@ -1,14 +1,14 @@
 import type { ICard } from "../../types/card.types"
 
-type TPlayer = 'player' | 'opponent'
+export type TPlayer = 'player' | 'opponent'
 
-interface IGameCard extends ICard {
+export interface IGameCard extends ICard {
     id: number
     isOnBoard: boolean
     isCanAttack: boolean
 }
 
-interface IHero {
+export interface IHero {
     deck:IGameCard[]
     health:number
     mana: number
