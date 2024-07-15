@@ -1,6 +1,6 @@
 import { IGameCard, IGameStore } from "../game.types";
 
-const getCardById = (cardId: number, deck: IGameCard[]) => deck.find(card =>
+export const getCardById = (cardId: number, deck: IGameCard[]) => deck.find(card =>
     card.id === cardId);
 
 export const attackCardAction = (

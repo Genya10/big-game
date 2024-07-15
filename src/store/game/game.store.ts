@@ -4,6 +4,7 @@ import { IHero, TPlayer, type IGameStore } from "./game.types";
 import { endTurnAction } from "./actions/end-turn";
 import { playCardAction } from "./actions/play-card";
 import { attackCardAction } from "./actions/attack-card";
+import { attackHeroAction } from "./actions/attack-hero";
 
 const initialPlayerData: IHero = {
   deck: createDeck(),
@@ -23,12 +24,15 @@ const useGameStore = create<IGameStore>((set, get) => ({
   startGame: () => set(initialGameData),
   endTurn: () => set(endTurnAction(get)),
   playCard: (cardId:number) => {
-    set((state)=> playCardAction(state, cardId))
+    set(state=> playCardAction(state, cardId))
   },
   attackCard: (attackerId:number, targetId: number) => {
     set(state => attackCardAction(state, attackerId, targetId))
   },
-  attackHero: () => {},
+  attackHero: (attackerId: number) => {
+    set(state => attackHeroAction(state, attackerId))
+      
+  },
 }));
 
 export { useGameStore };
