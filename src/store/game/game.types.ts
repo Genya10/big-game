@@ -21,7 +21,7 @@ export interface IGameStore {
     isGameOver: boolean
     startGame:()=> void
     endTurn:() => void
-    playCard:(card: IGameCard) => void
+    playCard:(cardId: number) => void
     attackCard:(attackerId: number, targetId: number) => void
     attackHero:(attackerId: number) => void
 }
