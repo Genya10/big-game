@@ -20,7 +20,7 @@ export interface IGameStore {
     opponent:IHero
     currentTurn: TPlayer
     isGameOver: boolean
-    startGame:()=> void
+    startGame:() => void
     endTurn:() => void
     playCard:(cardId: number) => void
     attackCard:(attackerId: number, targetId: number) => void

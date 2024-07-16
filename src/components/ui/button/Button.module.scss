@@ -4,6 +4,7 @@
      box-shadow: -1px 3px 0 #b23909;
 
      &:hover {
+        @apply text-brown-600;
         box-shadow: 0 2px 0 #b23909;
      }
 
@@ -12,6 +13,7 @@
         box-shadow: -1px 3px 0 #642206;
 
     &:hover {
+        @apply text-yellow-500;
         box-shadow: 0 2px 0 #642206;
     }
     }

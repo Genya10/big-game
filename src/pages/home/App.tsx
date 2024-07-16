@@ -1,5 +1,5 @@
 import { useGameStore } from "../../store/game/game.store"
-import { WelcomeScreen } from "./WelcomeScreen"
+import { StartedScreen } from "./StartedScreen"
 import { GameBoard } from "./board/GameBoard"
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-     {isGameStarted ? <GameBoard/> : <WelcomeScreen/>}
+     {isGameStarted ? <GameBoard/> : <StartedScreen/>}
     </div>
   )
 }
