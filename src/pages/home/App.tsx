@@ -1,15 +1,14 @@
-import { Button } from "../../components/button/Button"
-import { Settings } from "lucide-react"
+import { useGameStore } from "../../store/game/game.store"
+import { WelcomeScreen } from "./WelcomeScreen"
+import { GameBoard } from "./board/GameBoard"
 
 function App() {
+ const {isGameStarted} = useGameStore()
 
   return (
-    <>
-    <h1>Let is go!</h1>
-    <Button variant="primary" isCircle>
-      Start
-    </Button>
-    </>
+    <div>
+     {isGameStarted ? <GameBoard/> : <WelcomeScreen/>}
+    </div>
   )
 }
 
