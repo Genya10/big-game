@@ -3,9 +3,10 @@ export enum EnumTypeCard {
 }
 
 export interface ICard {
-    name:string;
-    mana: number;
-    health:number;
-    attack: number;
-    type?:EnumTypeCard
+    name: string
+    mana: number
+    health: number
+    attack: number
+    type?: EnumTypeCard
+    imageUrl: string
 }
