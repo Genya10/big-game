@@ -3,7 +3,7 @@ import { StartedScreen } from "./StartedScreen"
 import { GameBoard } from "./board/GameBoard"
 
 function App() {
- const {isGameStarted} = useGameStore()
+ const { isGameStarted } = useGameStore()
 
   return (
     <div>

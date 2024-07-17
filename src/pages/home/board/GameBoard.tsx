@@ -1,7 +1,8 @@
-import { useGameStore } from "../../../store/game/game.store";
+import { useGameStore } from "../../../store/game/game.store"
+import { PlayerInfo } from "./PlayerInfo";
 
 export function GameBoard() {
-  const { player, opponent } = useGameStore();
+  const { player, opponent, playCard } = useGameStore();
 
  const calcRotationOpponent = (index: number, total: number) => {
   const middle = (total - 1) / 2
@@ -15,13 +16,9 @@ export function GameBoard() {
 
   return (
     <div>
-      <div>
-        <div>
-          <h1>Opponent</h1>
-          <p>HP:{opponent.health}</p>
-          <p>Mana:{opponent.mana}</p>
-        </div>
-        <div className="-mt-40 flex items-center justify-center">
+      <div className="relative w-full">
+     <PlayerInfo player={opponent} type='opponent'/>
+        <div className="flex items-center justify-center -mt-5">
           {opponent.deck
             .filter(card => !card.isOnBoard)
             .slice(0, 6)
@@ -35,6 +32,7 @@ export function GameBoard() {
                 )}deg)`,
               }}  
                 key={card.id}
+                onClick={()=> playCard(card.id)}
               ></button>
             ))}
         </div>
@@ -49,7 +47,7 @@ export function GameBoard() {
               className="h-56 w-40 shadow inline-block mx-1 rounded-2xl"                                  
               key={card.id}
             >
-              <img alt={card.name} src={card.imageUrl} />
+              <img alt={card.name} src={card.imageUrl} draggable='false'/>
             </button>
           ))}
           </div>
@@ -64,18 +62,15 @@ export function GameBoard() {
               className="h-56 w-40 shadow inline-block mx-1 rounded-2xl"                         
               key={card.id}
             >
-              <img alt={card.name} src={card.imageUrl} />
+              <img alt={card.name} src={card.imageUrl} draggable='false'/>
             </button>
           ))}
           </div>
       </section>
 
-      <div className="absolute left-3 bottom-10">
-        <h1>Player</h1>
-        <p>HP:{player.health}</p>
-        <p>Mana:{player.mana}</p>
-      </div>
-      <div className="-bottom-48 relative flex items-center justify-center">
+    <PlayerInfo player={player} type='player'/>
+
+      <div className="-bottom-32 relative flex items-center justify-center">
           {player.deck
             .filter(card => !card.isOnBoard)
             .slice(0, 6)
@@ -89,6 +84,7 @@ export function GameBoard() {
                 )}deg)`,
               }}  
                 key={card.id}
+                onClick={()=> playCard(card.id)}
               ></button>
             ))}
         </div>
