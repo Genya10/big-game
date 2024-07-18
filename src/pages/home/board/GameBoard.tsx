@@ -1,24 +1,17 @@
 import { useGameStore } from "../../../store/game/game.store";
 import { PlayerInfo } from "./PlayerInfo";
 import { HandCard } from "./HandCard";
+import { getStyleRotation } from "./hand-card/get-style-rotation";
 
 export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
 
-  const calcRotationOpponent = (index: number, total: number) => {
-    const middle = (total - 1) / 2;
-    return -(index - middle) * 10;
-  };
-
-  const calcRotation = (index: number, total: number) => {
-    const middle = (total - 1) / 2;
-    return (index - middle) * 10;
-  };
-
   return (
     <div>
       <div className="relative w-full">
+
         <PlayerInfo player={opponent} type="opponent" />
+
         <div className="flex items-center justify-center -mt-5">
           {opponent.deck
             .filter((card) => !card.isOnBoard)
@@ -26,12 +19,7 @@ export function GameBoard() {
             .map((card, index, array) => (
               <HandCard
                 card={card}
-                style={{
-                  transform: `rotate(${calcRotationOpponent(
-                    index,
-                    array.length
-                  )}deg)`,
-                }}
+                style={getStyleRotation(index, array.length, false)}
                 key={card.id}
                 onClick={() => playCard(card.id)}
                 isHided
@@ -79,9 +67,7 @@ export function GameBoard() {
           .map((card, index, array) => (
             <HandCard
               card={card}
-              style={{
-                transform: `rotate(${calcRotation(index, array.length)}deg)`,
-              }}
+              style={getStyleRotation(index, array.length, true)}
               key={card.id}
               onClick={() => playCard(card.id)}
             />
