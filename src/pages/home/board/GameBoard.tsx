@@ -1,7 +1,6 @@
 import { useGameStore } from "../../../store/game/game.store";
 import { PlayerInfo } from "./PlayerInfo";
 import { HandCard } from "./HandCard";
-import { getStyleRotation } from "./hand-card/get-style-rotation";
 
 export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
@@ -19,7 +18,8 @@ export function GameBoard() {
             .map((card, index, array) => (
               <HandCard
                 card={card}
-                style={getStyleRotation(index, array.length, false)}
+                arrayLength={array.length}
+                index={index}
                 key={card.id}
                 onClick={() => playCard(card.id)}
                 isHided
@@ -67,7 +67,8 @@ export function GameBoard() {
           .map((card, index, array) => (
             <HandCard
               card={card}
-              style={getStyleRotation(index, array.length, true)}
+              arrayLength={array.length}
+              index={index}
               key={card.id}
               onClick={() => playCard(card.id)}
             />
