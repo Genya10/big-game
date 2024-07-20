@@ -1,8 +1,8 @@
 import { ICard } from "../../../types/card.types"
-import { CSSProperties } from "react"
+import { CSSProperties,useState } from "react"
 import cn from "clsx"
-import { motion } from 'framer-motion'
 import { getStyleRotation } from "./hand-card/get-style-rotation"
+import { motion } from 'framer-motion'
 
 interface IProps {
   card: ICard
@@ -17,6 +17,10 @@ interface IProps {
 export function HandCard({card, onClick, isDisabled, isHided, style, 
   index, arrayLength}: IProps) {
 
+    const [isHovered, setIsHovered] = useState(false)
+
+    const {rotate, translateY} = getStyleRotation(index, arrayLength, !isHided)
+
   return (
     <motion.button
       className={cn("h-40 w-28 shadow inline-block -ml-8 rounded-2xl", {
@@ -25,7 +29,20 @@ export function HandCard({card, onClick, isDisabled, isHided, style,
       style={style}
       disabled={isDisabled}
       onClick={onClick}
-      {...getStyleRotation(index, arrayLength, !isHided)}
+      onMouseEnter={()=> setIsHovered(true)}
+      onMouseLeave={()=> setIsHovered(false)}
+      initial={{scale:1, zIndex:0, y:0}}
+      animate={
+        isHovered && !isHided
+        ? {scale:1.2, zIndex:10, y:-90}
+        :{
+          scale:1,
+          zIndex:0,
+          y: translateY,
+          rotate
+        }
+      }
+      transition={{type:'spring', stiffness:200, damping:30}}
     >     
      <img src={isHided ? '/assets/heroes/cover.jpg' : card.imageUrl} 
           alt={card.name} 
@@ -33,3 +50,4 @@ export function HandCard({card, onClick, isDisabled, isHided, style,
     </motion.button>
   );
 }
+
