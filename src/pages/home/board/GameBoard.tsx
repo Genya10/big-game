@@ -6,12 +6,15 @@ export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
 
   return (
-    <div>
-      <div className="relative w-full">
+    
+      <div className="relative w-full grid grid-rows-2 ">
+        <section className=" pt-28">
+          <div>
 
         <PlayerInfo player={opponent} type="opponent" />
 
-        <div className="flex items-center justify-center -mt-5">
+        <div className="absolute w-full -top-20">
+          <div className="flex items-center justify-center ">
           {opponent.deck
             .filter((card) => !card.isOnBoard)
             .slice(0, 6)
@@ -26,9 +29,9 @@ export function GameBoard() {
               />
             ))}
         </div>
+        </div>
       </div>
 
-      <section>
         <div className="h-56">
           {opponent.deck
             .filter((card) => card.isOnBoard)
@@ -41,26 +44,28 @@ export function GameBoard() {
               </button>
             ))}
         </div>
+        </section>
 
         <hr />
 
-        <div className="h-56">
+        <section className="pb-8 -mt-28">
+        <div className="h-56 flex items-center justify-center">
           {player.deck
             .filter((card) => card.isOnBoard)
             .map((card) => (
               <button
-                className="h-56 w-40 shadow inline-block mx-1 rounded-2xl"
+                className="h-56 w-40 shadow rounded-2xl mb-60"
                 key={card.id}
               >
                 <img alt={card.name} src={card.imageUrl} draggable="false" />
               </button>
             ))}
         </div>
-      </section>
 
       <PlayerInfo player={player} type="player" />
 
-      <div className="-bottom-32 relative flex items-center justify-center">
+      <div className="absolute -bottom-12  w-full">
+        <div className="flex items-center justify-center">
         {player.deck
           .filter((card) => !card.isOnBoard)
           .slice(0, 6)
@@ -74,6 +79,8 @@ export function GameBoard() {
             />
           ))}
       </div>
+      </div>
+      </section>
     </div>
   );
 }
