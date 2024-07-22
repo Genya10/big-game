@@ -9,7 +9,7 @@ import { attackHeroAction } from "./actions/attack-hero";
 const initialPlayerData: IHero = {
   deck: createDeck(),
   health: 25,
-  mana: 1,
+  mana: 10,
 };
 
 const initialGameData:Pick<IGameStore,
