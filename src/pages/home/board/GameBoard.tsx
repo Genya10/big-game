@@ -1,5 +1,5 @@
 import { useGameStore } from "../../../store/game/game.store"
-import { PlayerInfo } from "./PlayerInfo"
+import { PlayerInfo } from "./player-info/PlayerInfo"
 import { HandCard } from "./HandCard"
 import { GridBoardCards } from "./board-card/GridBoardCards"
 
