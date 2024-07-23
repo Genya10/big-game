@@ -1,6 +1,7 @@
 import type { IHero, TPlayer } from "../../../../store/game/game.types"
 import cn from 'clsx'
 import { Badge } from "../../../../components/ui/Badge"
+import { MAX_HAND_CARDS, MAX_MANA } from "../../../../constants/core.constants"
 
 interface IPlayer {
     player: Omit<IHero,'deck'>
@@ -17,8 +18,8 @@ export function PlayerInfo({player,type}:IPlayer){
       })}>
         <h1>{isPlayer ? 'Player' : 'Opponent'}</h1>
         <p>HP : {player.health}</p>
-        <Badge value={player.health} maxValue={25} color='red'/>
-        <Badge value={player.mana} maxValue={8} color='blue'/>
+        <Badge value={player.health} maxValue={MAX_HAND_CARDS} color='red'/>
+        <Badge value={player.mana} maxValue={MAX_MANA} color='blue'/>
       </div>
     )
 }
