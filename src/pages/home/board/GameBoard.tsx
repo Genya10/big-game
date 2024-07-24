@@ -4,6 +4,7 @@ import { HandCard } from "./HandCard"
 import { GridBoardCards } from "./board-card/GridBoardCards"
 import { PlayerMana } from "./player-info/mana/PlayerMana";
 import { MAX_HAND_CARDS, MAX_MANA } from "../../../constants/core.constants";
+import { AudioPlayer } from "./audio-player/AudioPlayer";
 
 export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
@@ -58,6 +59,8 @@ export function GameBoard() {
                currentMana={player.mana} 
                maxMana={MAX_MANA} 
                typePlayer='player'/>
+
+               <AudioPlayer/>
 
         <div className="absolute -bottom-52  w-full">
           <div className="flex items-center justify-center">

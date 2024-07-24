@@ -9,13 +9,17 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export function Button(
-    { children, variant = "primary", isCircle ,...rest }: Props) {
+    { children, 
+      variant = "primary", 
+      isCircle ,
+      className,
+      ...rest }: Props) {
   return (
     <button className={cn(cl.button,
      cl[variant], {
       [cl.circle]:isCircle
      },
-      rest.className)} 
+      className)} 
       {...rest}>
       {children}
     </button>

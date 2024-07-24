@@ -1,6 +1,7 @@
 .button {
     @apply  py-2 px-3 primary-gradient
-     text-[#d06e14] font-bold text-xl transition-all duration-200 ease-in-out;
+     text-[#d06e14] font-bold text-xl transition-all duration-200
+       ease-in-out cursor-pointer;
      box-shadow: -1px 3px 0 #b23909;
 
      &:hover {
