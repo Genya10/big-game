@@ -12,14 +12,17 @@ export function PlayerInfo({player,type}:IPlayer){
     const isPlayer = type === 'player'
 
     return(
-      <div className={cn("absolute left-5",{
-        '-bottom-20': isPlayer,
-        'top-6': !isPlayer
+      <div className={cn("absolute ",{
+        'left-6 -bottom-36': isPlayer,
+        'right-6 top-6': !isPlayer
       })}>
-        <h1>{isPlayer ? 'Player' : 'Opponent'}</h1>
-        <p>HP : {player.health}</p>
-        <Badge value={player.health} maxValue={MAX_HAND_CARDS} color='red'/>
-        <Badge value={player.mana} maxValue={MAX_MANA} color='blue'/>
+        <img src={isPlayer 
+        ? '/assets/heroes/hero.jpg'
+        : '/assets/heroes/warrior.jpg'} alt={type} width={150}
+         className='rounded-3xl'/>
+        <div className="absolute w-full flex items-center justify-center bottom-0.5">
+          <Badge value={player.health} maxValue={MAX_HAND_CARDS} color='red'/>
+        </div>       
       </div>
     )
 }

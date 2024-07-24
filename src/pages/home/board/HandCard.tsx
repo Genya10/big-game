@@ -23,8 +23,9 @@ export function HandCard({card, onClick, isDisabled, isHided, style,
 
   return (
     <motion.button
-      className={cn("h-40 w-28 shadow inline-block -ml-8 rounded-2xl", {
+      className={cn("h-40 w-28 shadow inline-block -ml-8 rounded-2xl cursor-default", {
         "opacity-60": isDisabled,
+        "cursor-pointer": !isHided
       })}
       style={style}
       disabled={isDisabled}

@@ -18,8 +18,11 @@ export function GameBoard() {
       <section className="pt-28">
         <div>
           <PlayerInfo player={opponent} type="opponent" />
+          <PlayerMana 
+               currentMana={opponent.mana} 
+               maxMana={MAX_MANA} 
+               typePlayer='opponent'/>
        
-
           <div className="absolute w-full -top-20">
             <div className="flex items-center justify-center ">
               {opponent.deck
@@ -51,7 +54,10 @@ export function GameBoard() {
 
         <PlayerInfo player={player} type="player" />
 
-        <PlayerMana currentMana={player.mana} maxMana={MAX_MANA}/>
+        <PlayerMana 
+               currentMana={player.mana} 
+               maxMana={MAX_MANA} 
+               typePlayer='player'/>
 
         <div className="absolute -bottom-52  w-full">
           <div className="flex items-center justify-center">

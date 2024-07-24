@@ -1,14 +1,23 @@
 import { Badge } from "../../../../../components/ui/Badge";
 import cn from "clsx";
+import { TPlayer } from "../../../../../store/game/game.types";
 
 interface IProps {
-  currentMana: number;
-  maxMana: number;
+  currentMana: number
+  maxMana: number
+  typePlayer: TPlayer
 }
 
-export function PlayerMana({ currentMana, maxMana }: IProps) {
+export function PlayerMana({ currentMana, maxMana, typePlayer }: IProps) {
+  const isPlayer = typePlayer === 'player'
+
   return (
-    <div className="flex items-center absolute right-5 -bottom-3">
+    <div 
+         className={cn("flex items-center absolute",{
+          "right-6 -bottom-28": isPlayer,
+          "left-4 top-12": !isPlayer
+         })}
+         >
       <Badge value={currentMana} maxValue={maxMana} color="blue" />
       <div className="flex items-center ml-2">
         {new Array(maxMana).fill(0).map((_, index) => (
