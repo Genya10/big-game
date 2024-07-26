@@ -2,9 +2,10 @@ import { useGameStore } from "../../../store/game/game.store"
 import { PlayerInfo } from "./player-info/PlayerInfo"
 import { HandCard } from "./HandCard"
 import { GridBoardCards } from "./board-card/GridBoardCards"
-import { PlayerMana } from "./player-info/mana/PlayerMana";
-import { MAX_HAND_CARDS, MAX_MANA } from "../../../constants/core.constants";
-import { AudioPlayer } from "./audio-player/AudioPlayer";
+import { PlayerMana } from "./player-info/mana/PlayerMana"
+import { MAX_HAND_CARDS, MAX_MANA } from "../../../constants/core.constants"
+import { AudioPlayer } from "./audio-player/AudioPlayer"
+import { EndTurnButton } from "./EndTurnButton"
 
 export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
@@ -47,8 +48,11 @@ export function GameBoard() {
 
       </section>
 
-      <hr className="opacity-60"/>
-
+    <div>
+      <hr className="opacity-60 w-11/12"/>
+      <EndTurnButton/>
+    </div>
+      
       <section className="pb-12">
         
         <GridBoardCards deck={player.deck}/>
