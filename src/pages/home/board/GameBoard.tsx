@@ -36,7 +36,6 @@ export function GameBoard() {
                     arrayLength={array.length}
                     index={index}
                     key={card.id}
-                    onClick={() => playCard(card.id)}
                     isHided
                   />
                 ))}
@@ -78,6 +77,7 @@ export function GameBoard() {
                   index={index}
                   key={card.id}
                   onClick={() => playCard(card.id)}
+                  isDisabled={player.mana < card.mana}
                 />
               ))}
           </div>

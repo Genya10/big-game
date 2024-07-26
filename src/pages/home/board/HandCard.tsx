@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 interface IProps {
   card: ICard
-  onClick: () => void
+  onClick?: () => void
   isDisabled?: boolean
   isHided?: boolean
   style?: CSSProperties
@@ -25,7 +25,7 @@ export function HandCard({card, onClick, isDisabled, isHided, style,
     <motion.button
       className={cn("h-40 w-28 shadow inline-block -ml-8 rounded-2xl cursor-default", {
         "opacity-60": isDisabled,
-        "cursor-pointer": !isHided
+        "cursor-pointer": !isHided && !isDisabled,
       })}
       style={style}
       disabled={isDisabled}
