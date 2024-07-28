@@ -25,4 +25,5 @@ export interface IGameStore {
     playCard:(cardId: number) => void
     attackCard:(attackerId: number, targetId: number) => void
     attackHero:(attackerId: number) => void
+    resetGameOver: () => void
 }

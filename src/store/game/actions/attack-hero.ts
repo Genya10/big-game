@@ -37,6 +37,7 @@ export const attackHeroAction = (
      // Возвращаем обновленное состояние игрока, противника и статус игры
     return { player: state.player, 
              opponent: state.opponent, 
-             isGameOver:state.isGameOver
+             isGameOver:state.isGameOver,
+             isGameStarted: false
         }
 }

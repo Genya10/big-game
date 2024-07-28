@@ -35,6 +35,9 @@ const useGameStore = create<IGameStore>((set, get) => ({
   attackHero: (attackerId: number) => {
     set(state => attackHeroAction(state, attackerId))      
   },
+  resetGameOver:() => set({
+    isGameOver: false
+  })
 }));
 
 export { useGameStore };
