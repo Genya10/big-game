@@ -1,10 +1,11 @@
-import { create } from "zustand";
-import { createDeck } from "./create-deck";
-import { IHero, TPlayer, type IGameStore } from "./game.types";
-import { endTurnAction } from "./actions/end-turn";
-import { playCardAction } from "./actions/play-card";
-import { attackCardAction } from "./actions/attack-card";
-import { attackHeroAction } from "./actions/attack-hero";
+import { create } from "zustand"
+import { createDeck } from "./create-deck"
+import { IHero, TPlayer, type IGameStore } from "./game.types"
+import { endTurnAction } from "./actions/end-turn"
+import { playCardAction } from "./actions/play-card"
+import { attackCardAction } from "./actions/attack-card"
+import { attackHeroAction } from "./actions/attack-hero"
+import { returnCardAction } from "./actions/return-card"
 
 const initialPlayerData: IHero = {
   deck: createDeck(),
@@ -29,6 +30,9 @@ const useGameStore = create<IGameStore>((set, get) => ({
   playCard: (cardId:number) => {
     set(state=> playCardAction(state, cardId))
   },
+  returnCard:(cardId: number)=> {
+    set(state => returnCardAction(state, cardId))
+  } ,
   attackCard: (attackerId:number, targetId: number) => {
     set(state => attackCardAction(state, attackerId, targetId))
   },

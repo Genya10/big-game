@@ -23,6 +23,7 @@ export interface IGameStore {
     startGame:() => void
     endTurn:() => void
     playCard:(cardId: number) => void
+    returnCard:(cardId: number) => void
     attackCard:(attackerId: number, targetId: number) => void
     attackHero:(attackerId: number) => void
     resetGameOver: () => void
