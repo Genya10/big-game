@@ -9,9 +9,9 @@ interface IProps {
 export function BoardCard({ card }: IProps) {
   return (
     <motion.button
-      className={cn("h-56 w-40 shadow rounded-2xl border-3", {
-        'border-4':!card.isCanAttack,
-        'cursor-pointer shadow-black': card.isCanAttack
+      className={cn("h-56 w-40 rounded-2xl shadow-2xl", {
+       
+       'cursor-pointer border-2 border-solid border-green-700': card.isCanAttack
       })}
       initial={{ scale: 0.7, rotate: -20, y: -100, x: -30, opacity: 0 }}
       animate={{ scale: 1, rotate: 0, y: 0, x: 0, opacity: 1 }}

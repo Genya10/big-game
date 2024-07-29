@@ -6,18 +6,19 @@ import { PlayerMana } from "./player-info/mana/PlayerMana"
 import { MAX_HAND_CARDS, MAX_MANA } from "../../../constants/core.constants"
 import { AudioPlayer } from "./audio-player/AudioPlayer"
 import { EndTurnButton } from "./EndTurnButton"
+import { SectionSide } from "./SectionSide"
 
 export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
 
   return (
     <div
-      className="relative w-full grid "
-      style={{
+      className="relative h-screen w-full"> {/**grid */}
+     {/* style={{
         gridTemplateRows: "1.3.4fr .1fr 1fr",
-      }}
-    >
-      <section className="pt-28">
+      }}*/}
+    
+      <SectionSide isPlayer={false}>
         <div>
           <PlayerInfo player={opponent} type="opponent" />
           <PlayerMana 
@@ -45,14 +46,14 @@ export function GameBoard() {
 
         <GridBoardCards deck={opponent.deck}/>
 
-      </section>
+      </SectionSide>
 
-    <div>
+    <div className="absolute top-[51%] left-0 w-full">
       <hr className="opacity-60 w-11/12"/>
       <EndTurnButton/>
     </div>
       
-      <section className="pb-12">
+      <SectionSide isPlayer >
         
         <GridBoardCards deck={player.deck}/>
 
@@ -65,7 +66,7 @@ export function GameBoard() {
 
                <AudioPlayer/>
 
-        <div className="absolute -bottom-52  w-full">
+        <div className="absolute -bottom-12  w-full">
           <div className="flex items-center justify-center">
             {player.deck
               .filter((card) => !card.isOnBoard)
@@ -82,7 +83,7 @@ export function GameBoard() {
               ))}
           </div>
         </div>
-      </section>
+      </SectionSide>
     </div>
   );
 }

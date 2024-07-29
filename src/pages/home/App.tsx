@@ -5,7 +5,7 @@ import { Notification } from "../../components/ui/notification/Notification"
 import { useEffect } from "react"
 
 function App() {
- const { isGameStarted,isGameOver, resetGameOver } = useGameStore()
+ const { isGameStarted, isGameOver, resetGameOver } = useGameStore()
 
  useEffect(()=>{
   const timeout = setTimeout(() =>{

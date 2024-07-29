@@ -5,7 +5,7 @@ export function EndTurnButton(){
   const {endTurn} = useGameStore()
 
     return (
-        <Button className="absolute top-[51.5%] right-3 rounded-xl z-10" 
+        <Button className="absolute -top-6 right-3 rounded-xl z-10" 
                 variant="primary" onClick={endTurn}>
           End Move
         </Button>

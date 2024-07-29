@@ -1,7 +1,7 @@
 import type { IHero, TPlayer } from "../../../../store/game/game.types"
 import cn from 'clsx'
 import { Badge } from "../../../../components/ui/Badge"
-import { MAX_HAND_CARDS, MAX_MANA } from "../../../../constants/core.constants"
+import { MAX_HAND_CARDS } from "../../../../constants/core.constants"
 
 interface IPlayer {
     player: Omit<IHero,'deck'>
@@ -13,7 +13,7 @@ export function PlayerInfo({player,type}:IPlayer){
 
     return(
       <div className={cn("absolute ",{
-        'left-6 -bottom-36': isPlayer,
+        'left-6 bottom-6': isPlayer,
         'right-6 top-6': !isPlayer
       })}>
         <img src={isPlayer 
