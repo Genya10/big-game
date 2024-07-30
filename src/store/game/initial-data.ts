@@ -1,10 +1,10 @@
 import { type IGameStore, IGameMethodsStore, IHero, TPlayer } from "./game.types"
-import { createDeck } from "./create-deck"
 
  const initialPlayerData: IHero = {
-    deck: createDeck(),
+    deck: [],
     health: 25,
     mana: 10,
+    handCards:[]
   };
   
  export const initialGameData:Omit<

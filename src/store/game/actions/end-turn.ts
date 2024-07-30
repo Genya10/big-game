@@ -3,7 +3,7 @@ import type { IGameCard, IGameStore, TPlayer } from "../game.types";
 
 const getNewMana = (newTurn: TPlayer, currentTurn: number) => {
   return newTurn === "player" 
-     ? Math.min(currentTurn + 1, MAX_MANA) 
+     ? Math.min(currentTurn, MAX_MANA) 
      : currentTurn
 };
 
