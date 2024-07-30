@@ -13,10 +13,7 @@ export function GameBoard() {
 
   return (
     <div
-      className="relative h-screen w-full"> {/**grid */}
-     {/* style={{
-        gridTemplateRows: "1.3.4fr .1fr 1fr",
-      }}*/}
+      className="relative h-screen w-full"> 
     
       <SectionSide isPlayer={false}>
         <div>

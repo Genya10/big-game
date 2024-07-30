@@ -1,4 +1,4 @@
-import type { IGameStore } from "../game.types";
+import type { IGameStore } from "../game.types"
 
 export const returnCardAction = (state:IGameStore, cardId: number):
 Partial<IGameStore>=> {

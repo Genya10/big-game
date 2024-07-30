@@ -14,7 +14,7 @@ export function PlayerMana({ currentMana, maxMana, typePlayer }: IProps) {
   return (
     <div 
          className={cn("flex items-center absolute",{
-          "right-6 -bottom-28": isPlayer,
+          "right-6 bottom-14": isPlayer,
           "left-4 top-12": !isPlayer
          })}
          >

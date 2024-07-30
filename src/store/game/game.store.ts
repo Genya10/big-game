@@ -1,26 +1,11 @@
 import { create } from "zustand"
-import { createDeck } from "./create-deck"
-import { IHero, TPlayer, type IGameStore } from "./game.types"
+import { type IGameStore } from "./game.types"
 import { endTurnAction } from "./actions/end-turn"
 import { playCardAction } from "./actions/play-card"
 import { attackCardAction } from "./actions/attack-card"
 import { attackHeroAction } from "./actions/attack-hero"
 import { returnCardAction } from "./actions/return-card"
-
-const initialPlayerData: IHero = {
-  deck: createDeck(),
-  health: 25,
-  mana: 10,
-};
-
-const initialGameData:Pick<IGameStore,
-'player'| 'opponent' | 'currentTurn' | 'isGameOver' | 'isGameStarted'> = {
-  player: initialPlayerData,
-  opponent: initialPlayerData,
-  currentTurn: "player" as TPlayer,
-  isGameOver: false,
-  isGameStarted: true
-};
+import { initialGameData } from "./initial-data"
 
 const useGameStore = create<IGameStore>((set, get) => ({
   ...initialGameData,
