@@ -4,7 +4,7 @@ import { type IGameStore, IGameMethodsStore, IHero, TPlayer } from "./game.types
     deck: [],
     health: 25,
     mana: 10,
-    handCards:[]
+   // handCards:[]
   };
   
  export const initialGameData:Omit<

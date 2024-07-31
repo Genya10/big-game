@@ -4,13 +4,14 @@ import { createDeck } from "./create-deck"
 import shuffle from 'lodash/shuffle'
 import { MAX_HAND_CARDS } from "../../../../constants/core.constants"
 
-export const startGameAction =(): Partial<IGameStore> => {
+const getStartCards = (deck: IGameCard[]): IGameCard[] => deck.map((card, index)=>({
+    ...card,
+    isOnHand: index < MAX_HAND_CARDS,
+    isTaken: index < MAX_HAND_CARDS
+}))
+
+export const startGameAction = (): Partial<IGameStore> => {
     const deck = createDeck()
-    const startCards = (deck: IGameCard[]): IGameCard[]=> deck.map((card, index)=>({
-        ...card,
-        isOnHand: index < MAX_HAND_CARDS,
-        isTaken: index < MAX_HAND_CARDS
-    }))
 
     const playerInitialDeck = shuffle(deck)
     const opponentInitialDeck = shuffle(deck)
@@ -19,11 +20,11 @@ export const startGameAction =(): Partial<IGameStore> => {
         ...initialGameData,
         player:{
             ...initialGameData.player,
-             deck: playerInitialDeck
+             deck: getStartCards(playerInitialDeck)
             },
         opponent:{
             ...initialGameData.opponent,
-             deck: opponentInitialDeck
+             deck: getStartCards(opponentInitialDeck)
             }
     }
 }

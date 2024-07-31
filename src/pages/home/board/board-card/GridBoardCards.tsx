@@ -9,7 +9,7 @@ export function GridBoardCards({ deck }: IProps) {
   return (
     <div className="h-56 flex items-center justify-center">
       {deck
-        .filter((card) => card.isOnBoard)
+        .filter(card => card.isOnBoard)
         .map(card => (
           <BoardCard key={card.id} card={card} />
         ))}

@@ -5,13 +5,16 @@ Partial<IGameStore>=> {
   const isPlayerTurn = state.currentTurn = 'player'
   const currentPlayer = isPlayerTurn ? state.player : state.opponent
         
-  const currentCard = currentPlayer.handCards.find(card => card.id === cardId)
+  const currentCard = currentPlayer.deck.find(card => card.id === cardId)
 
   if(currentCard && currentPlayer.mana >= currentCard?.mana){
     currentCard.isOnBoard = true
+    currentCard.isOnHand = false
     currentPlayer.mana -= currentCard.mana
   }
 
-  return isPlayerTurn ? {player:{...currentPlayer, deck: currentPlayer.deck}} : 
-  {opponent: currentPlayer}
+  return isPlayerTurn 
+  ? { player: currentPlayer}
+  : { opponent: currentPlayer}
 }
+ 

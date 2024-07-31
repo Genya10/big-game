@@ -7,7 +7,7 @@ export const attackHeroAction = (
     attackerId: number
 ):Partial<IGameStore> => {
     // Определяем, чей сейчас ход (игрока или противника)
-    const isAttackerPlayer = state.currentTurn = 'player'
+    const isAttackerPlayer = state.currentTurn === 'player'
     // Определяем, кто является противником в текущем ходе
     // Если ход игрока, противник - opponent, иначе - player
     const opponent = state[isAttackerPlayer ? 'opponent' : 'player']
@@ -16,11 +16,11 @@ export const attackHeroAction = (
     // Если ход игрока, ищем в колоде игрока, иначе - в колоде противника
     const attacker = getCardById(
         attackerId,
-        isAttackerPlayer ? state.opponent.deck : state.player.deck
+        isAttackerPlayer ? state.player.deck : state.opponent.deck
     )
 
     const opponentTaunt = opponent.deck.find(
-        card => card.type === EnumTypeCard.taunt)
+        card => card.type === EnumTypeCard.taunt && card.isOnBoard)
     //Если атакующая карта существует,может атаковать и нет карты "таунт" у противника    
         if(attacker && attacker.isCanAttack && !opponentTaunt){
     // Уменьшаем здоровье противника на величину атаки атакующей карты

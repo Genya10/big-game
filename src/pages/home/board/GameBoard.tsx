@@ -3,7 +3,7 @@ import { PlayerInfo } from "./player-info/PlayerInfo"
 import { HandCard } from "./HandCard"
 import { GridBoardCards } from "./board-card/GridBoardCards"
 import { PlayerMana } from "./player-info/mana/PlayerMana"
-import { MAX_HAND_CARDS, MAX_MANA } from "../../../constants/core.constants"
+import { MAX_MANA } from "../../../constants/core.constants"
 import { AudioPlayer } from "./audio-player/AudioPlayer"
 import { EndTurnButton } from "./EndTurnButton"
 import { SectionSide } from "./SectionSide"
@@ -26,8 +26,7 @@ export function GameBoard() {
           <div className="absolute w-full -top-20">
             <div className="flex items-center justify-center ">
               {opponent.deck
-                .filter((card) => !card.isOnBoard)
-                .slice(0, MAX_HAND_CARDS)
+                .filter(card => card.isOnHand)
                 .map((card, index, array) => (
                   <HandCard
                     card={card}
@@ -66,8 +65,7 @@ export function GameBoard() {
         <div className="absolute -bottom-12  w-full">
           <div className="flex items-center justify-center">
             {player.deck
-              .filter((card) => !card.isOnBoard)
-              .slice(0, MAX_HAND_CARDS)
+              .filter((card) => !card.isOnHand)
               .map((card, index, array) => (
                 <HandCard
                   card={card}
