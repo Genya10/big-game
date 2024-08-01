@@ -8,7 +8,7 @@ const getNewMana = (newTurn: TPlayer, currentTurn: number) => {
      : currentTurn
 };
 
-const resetAttack = (deck: IGameCard[]) => {
+const updateAttack = (deck: IGameCard[]) => {
   return deck.map((card) => ({
     ...card,
     isCanAttack: card.isOnBoard,
@@ -29,12 +29,12 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
     player: {
       ...state.player,
       mana: newPlayerMana,
-      deck: resetAttack(state.player.deck),
+      deck: updateAttack(state.player.deck),
     },
     opponent: {
       ...state.opponent,
       mana: newOpponentMana,
-      deck: resetAttack(state.player.deck),
+      deck: updateAttack(state.opponent.deck), ////// player???
     },
     turn: state.turn + 1,
   };

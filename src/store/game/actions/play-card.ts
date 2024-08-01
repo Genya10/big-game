@@ -1,10 +1,10 @@
 import type { IGameStore } from "../game.types";
 
-export const playCardAction = (state:IGameStore, cardId: number):
-Partial<IGameStore>=> {
+export const playCardAction = 
+    (state:IGameStore, cardId: number):
+  Partial<IGameStore> => {
   const isPlayerTurn = state.currentTurn = 'player'
-  const currentPlayer = isPlayerTurn ? state.player : state.opponent
-        
+  const currentPlayer = isPlayerTurn ? state.player : state.opponent        
   const currentCard = currentPlayer.deck.find(card => card.id === cardId)
 
   if(currentCard && currentPlayer.mana >= currentCard?.mana){
