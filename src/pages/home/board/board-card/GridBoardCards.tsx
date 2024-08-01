@@ -2,16 +2,17 @@ import { IGameCard } from "../../../../store/game/game.types";
 import { BoardCard } from "./BoardCard";
 
 interface IProps {
-  deck: IGameCard[];
+  deck: IGameCard[]
+  onClick?:(cardId: number) => void
 }
 
-export function GridBoardCards({ deck }: IProps) {
+export function GridBoardCards({ deck, onClick }: IProps) {
   return (
     <div className="h-56 flex items-center justify-center">
       {deck
         .filter(card => card.isOnBoard)
         .map(card => (
-          <BoardCard key={card.id} card={card} />
+          <BoardCard key={card.id} card={card} onClick={onClick}/>
         ))}
     </div>
   );

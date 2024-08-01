@@ -4,10 +4,11 @@ import type { IGameCard } from "../../../../store/game/game.types"
 import { useGameStore } from "../../../../store/game/game.store"
 
 interface IProps {
-  card: IGameCard;
+  card: IGameCard
+  onClick?:(cardId: number) => void
 }
 
-export function BoardCard({ card }: IProps) {
+export function BoardCard({ card, onClick }: IProps) {
   const {returnCard} = useGameStore()
 
   return (
@@ -20,7 +21,7 @@ export function BoardCard({ card }: IProps) {
       animate={{ scale: 1, rotate: 0, y: 0, x: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 150, damping: 30, mass: 2 }}
       onClick={card.isCanAttack 
-        ? () => console.log('attack')
+        ? () => onClick && onClick(card.id)
         : () => returnCard(card.id)}
     >
       <img alt={card.name} src={card.imageUrl} draggable="false" />
