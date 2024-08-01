@@ -1,12 +1,12 @@
 import type { IGameCard, IGameStore } from "../game.types"
 import { MAX_HAND_CARDS } from "../../../constants/core.constants"
 
-export const drawCardAction = (state: IGameStore):Partial<IGameStore> => {
+export const drawCardsAction = (state: IGameStore) => {
   const currentPlayer = state.currentTurn === 'player' ? state.player : state.opponent
 
-  const cardInHands = currentPlayer.deck.filter(card => card.isOnHand).length
+  const cardInHand = currentPlayer.deck.filter(card => card.isOnHand).length
 
-  const cardsNeeded = MAX_HAND_CARDS - cardInHands
+  const cardsNeeded = MAX_HAND_CARDS - cardInHand
 
   let drawnCards = 0
 
@@ -20,5 +20,9 @@ export const drawCardAction = (state: IGameStore):Partial<IGameStore> => {
 
   currentPlayer.deck = updatedDeck
 
-    return {player: state.player, opponent: state.opponent} 
-}
+    return { updatedDeck }
+    }
+    
+    /* state.currentTurn === 'player'
+    ? { player: state.player } 
+    : { opponent: state.opponent } */
