@@ -6,6 +6,6 @@ interface IUseSelectAttacker {
 }
 
 export const useSelectAttacker = create<IUseSelectAttacker>(set=> ({
- cardAttackerId:null,
- setCardAttackerId: cardId => set({cardAttackerId: cardId})
+  cardAttackerId:null,
+  setCardAttackerId: cardId => set({cardAttackerId: cardId})
 }))

@@ -7,24 +7,9 @@ import { MAX_MANA } from "../../../constants/core.constants"
 import { AudioPlayer } from "./audio-player/AudioPlayer"
 import { EndTurnButton } from "./EndTurnButton"
 import { SectionSide } from "./SectionSide"
-import { useState } from "react"
 
 export function GameBoard() {
-  const { player, opponent, playCard, attackCard, attackHero } = useGameStore();
-
-  const [cardAttackerId, setCardAttackerId] = useState<number | null>(null)
-
-  const handleSelectTarget = (targetId: number, isHero = false) => {
-    if(!cardAttackerId) return
-
-    if(isHero){
-      attackHero(cardAttackerId)
-    }
-    else{
-      attackCard(cardAttackerId, targetId)
-    }
-    setCardAttackerId(null)
-  }
+  const { player, opponent, playCard } = useGameStore();
 
   return (
     <div
@@ -55,7 +40,7 @@ export function GameBoard() {
           </div>
         </div>
 
-        <GridBoardCards deck={opponent.deck}/>
+        <GridBoardCards deck={opponent.deck} isPlayerSide={false}/>
 
       </SectionSide>
 
@@ -66,7 +51,7 @@ export function GameBoard() {
       
       <SectionSide isPlayer >
         
-        <GridBoardCards deck={player.deck} onClick={handleSelectTarget}/>
+        <GridBoardCards deck={player.deck} isPlayerSide/>
 
         <PlayerInfo player={player} type="player" />
 

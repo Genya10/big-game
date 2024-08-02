@@ -3,16 +3,17 @@ import { BoardCard } from "./BoardCard";
 
 interface IProps {
   deck: IGameCard[]
-  onClick?:(cardId: number) => void
+  isPlayerSide: boolean
 }
 
-export function GridBoardCards({ deck, onClick }: IProps) {
+export function GridBoardCards({ deck,isPlayerSide }: IProps) {
+
   return (
     <div className="h-56 flex items-center justify-center">
       {deck
         .filter(card => card.isOnBoard)
         .map(card => (
-          <BoardCard key={card.id} card={card} onClick={onClick}/>
+          <BoardCard key={card.id} card={card} isPlayerSide={isPlayerSide}/>
         ))}
     </div>
   );
