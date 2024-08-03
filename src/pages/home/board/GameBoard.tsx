@@ -10,7 +10,7 @@ import { SectionSide } from "./SectionSide"
 
 export function GameBoard() {
   const { player, opponent, playCard } = useGameStore();
-
+ console.log(opponent.deck.filter(card => card.isOnBoard))
   return (
     <div
       className="relative h-screen w-full"> 
