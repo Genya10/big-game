@@ -5,15 +5,15 @@ export function useEnemyTarget(){
     const {attackHero, attackCard} = useGameStore()
     const {cardAttackerId, setCardAttackerId} = useSelectAttacker()
 
-    const handleSelectTarget = (targetId: number, isHero = false) => {
+    const handleSelectTarget = (targetId?: number, isHero = false) => {
         if(!cardAttackerId) return
     
         if(isHero){
           attackHero(cardAttackerId)
-        } else {
+        } else if(targetId){
           attackCard(cardAttackerId, targetId)
         }
         setCardAttackerId(null)
       }
-      return {handleSelectTarget}
+      return { handleSelectTarget }
 }

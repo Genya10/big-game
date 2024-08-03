@@ -27,10 +27,12 @@ export const attackHeroAction = (
          opponent.health -= attacker.attack
     // Устанавливаем флаг, чтобы карта не могла атаковать повторно в этом ходу
          attacker.isCanAttack = false
+         console.log(opponent.health, 'opponent.health')
     // Проверяем, закончилось ли здоровье противника
          if(opponent.health <= 0){
     // Если здоровье противника <= 0, игра заканчивается
             state.isGameOver = true 
+            state.isGameStarted = false
          }
         }
 
@@ -38,6 +40,6 @@ export const attackHeroAction = (
     return { player: state.player, 
              opponent: state.opponent, 
              isGameOver:state.isGameOver,
-             isGameStarted: false
+             isGameStarted: state.isGameStarted
         }
 }
