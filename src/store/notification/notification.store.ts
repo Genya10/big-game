@@ -13,7 +13,7 @@ export const useNotificationStore = create<INotificationStore>(set => ({
     type:'info',
     show:(message, type, duration = 2500) => {
      set({message, type})
-     setTimeout(()=>{
+     setTimeout(() => {
         set({message:''})
      }, duration)
     }
