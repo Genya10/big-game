@@ -1,4 +1,5 @@
 import { EnumTypeCard } from "../../../types/card.types";
+import { useNotificationStore } from "../../notification/notification.store";
 import { IGameStore } from "../game.types";
 import { getCardById } from "./attack-card";
 
@@ -33,6 +34,13 @@ export const attackHeroAction = (
     // Если здоровье противника <= 0, игра заканчивается
             state.isGameOver = true 
             state.isGameStarted = false
+
+            useNotificationStore
+            .getState()
+            .show(
+                isAttackerPlayer ? 'You win!' : 'You lose :(',
+                isAttackerPlayer ? 'win' : 'lose'
+            )
          }
         }
 
