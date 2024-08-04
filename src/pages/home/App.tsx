@@ -6,10 +6,9 @@ import { Notification } from "../../components/ui/notification/Notification";
 function App() {
   const { isGameStarted } = useGameStore();
 
-
   return (
     <div>
-      <Notification/>
+      <Notification />
       {isGameStarted ? <GameBoard /> : <StartedScreen />}
     </div>
   );

@@ -1,4 +1,5 @@
 import { MAX_MANA } from "../../../constants/core.constants"
+import { useNotificationStore } from "../../notification/notification.store";
 import type { IGameCard, IGameStore, TPlayer } from "../game.types"
 import { drawCardsAction } from "./draw-cards";
 
@@ -24,6 +25,11 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
 
   const newPlayerMana = getNewMana("player", state.turn);
   const newOpponentMana = getNewMana("opponent", state.turn);
+
+  if(newTurn === 'player'){
+     useNotificationStore
+    .getState().show('Your Turn')
+  }
 
   return {
     currentTurn: newTurn,

@@ -23,11 +23,10 @@ export interface IGameMethodsStore {
     returnCard:(cardId: number) => void
     attackCard:(attackerId: number, targetId: number) => void
     attackHero:(attackerId: number) => void
-    resetGameOver: () => void
 }
 
 export interface IGameStore extends IGameMethodsStore{
-     player:IHero
+    player:IHero
     opponent:IHero
     isGameStarted:boolean,
     isGameOver: boolean

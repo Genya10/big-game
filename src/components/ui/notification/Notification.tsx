@@ -5,6 +5,7 @@ import cn from 'clsx'
 export function Notification() {
   const {message, type} = useNotificationStore()
 
+  //if(!message) return null
   return (
     !!message && (
     <div className="fixed z-50 w-full left-0 top-0">

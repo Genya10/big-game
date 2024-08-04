@@ -4,8 +4,8 @@ type TypeNotification = 'win' | 'lose' | 'info'
 
 interface INotificationStore {
   message: string
-  type:TypeNotification
-  show:(message: string, type: TypeNotification) => void
+  type: TypeNotification
+  show: (message: string, type?: TypeNotification) => void
 }
 
 export const useNotificationStore = create<INotificationStore>(set => ({
