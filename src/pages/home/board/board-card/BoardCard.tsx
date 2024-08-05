@@ -17,10 +17,11 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
 
   const handleClick = (cardId:number)=> {
     if(isPlayerSide){
-      console.log('qwerty:'+ isPlayerSide)
-      card.isCanAttack 
-      ? setCardAttackerId(cardId)
-      : returnCard(card.id)
+     if(card.isCanAttack ) {
+      setCardAttackerId(cardId)
+     } else if(card.isPlayedThisTurn){
+      returnCard(cardId)
+     }
     } else {
       handleSelectTarget(cardId)
     }

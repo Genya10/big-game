@@ -27,6 +27,12 @@
             box-shadow: 0 2px 0 #434343;
         }
     }
+
+    &.disabled {
+        @apply bg-gradient-to-t from-[#AC9681] to-[#6C5A4F] text-[#0E0101] cursor-not-allowed;
+        box-shadow: none
+    }
+
     &.circle{
         @apply rounded-full py-3 px-3;
     }

@@ -14,6 +14,7 @@ const updateAttack = (deck: IGameCard[]) => {
   return deck.map((card) => ({
     ...card,
     isCanAttack: card.isOnBoard,
+    isPlayedThisTurn:false
   }));
 };
 

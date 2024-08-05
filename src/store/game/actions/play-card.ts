@@ -9,6 +9,7 @@ export const playCardAction =
 
   if(currentCard && currentPlayer.mana >= currentCard?.mana){
     currentCard.isOnBoard = true
+    currentCard.isPlayedThisTurn = true
     currentCard.isOnHand = false
     currentPlayer.mana -= currentCard.mana
   }
