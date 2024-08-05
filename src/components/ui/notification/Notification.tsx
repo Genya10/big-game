@@ -8,20 +8,23 @@ export function Notification() {
   //if(!message) return null
   return (
     !!message && (
-    <div className="fixed z-50 w-full left-0 top-0">
-      <motion.div
+    <motion.div 
+                className="fixed z-50 w-full h-full left-0 top-0 flex
+                items-center justify-center bg-[#102a27]/80"
+                initial={{opacity: 0, zoom: 0.5 }}
+                animate={{opacity: 1, zoom: 1 }}
+                transition={{ type: "keyframes", stiffness: 150, damping: 30, mass: 2 }}
+     >
+      <div
         className={cn("rounded-lg py-2 px-4 mx-auto w-max font-semibold text-xl",{
                    'bg-gradient-to-t from-green-400 to-green-700': type === 'win',
                    'bg-gradient-to-t from-red-500 to-red-700': type === 'lose',
                    'secondary-gradient text-white ': type === 'info'
                    })}
-        initial={{ y: -100, x: -30, opacity: 0 }}
-        animate={{ y: 30, x: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 150, damping: 30, mass: 2 }}
       >
         {message}
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
    )
   );
 }
