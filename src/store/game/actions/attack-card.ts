@@ -8,7 +8,7 @@ export const attackCardAction = (
   attackerId: number,
   targetId: number
 ) => {
-  const isAttackerPlayer = state.currentTurn === "player";
+  const isAttackerPlayer = state.isPlayerTurn;
 
   const attacker = getCardById(
     attackerId,

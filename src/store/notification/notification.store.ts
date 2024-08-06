@@ -11,7 +11,7 @@ interface INotificationStore {
 export const useNotificationStore = create<INotificationStore>(set => ({
     message:'',
     type:'info',
-    show:(message, type='info', duration = 2000) => {
+    show:(message, type='info', duration = 1200) => {
      set({message, type})
      setTimeout(() => {
         set({message:''})
