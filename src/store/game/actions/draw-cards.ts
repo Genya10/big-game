@@ -2,7 +2,7 @@ import type { IGameCard, IGameStore } from "../game.types"
 import { MAX_HAND_CARDS } from "../../../constants/core.constants"
 
 export const drawCardsAction = (state: IGameStore) => {
-  const currentPlayer = state.isPlayerTurn ? state.player : state.opponent
+  const currentPlayer = state.currentTurn === 'player' ? state.player : state.opponent
 
   const cardInHand = currentPlayer.deck.filter(card => card.isOnHand).length
 

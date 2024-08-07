@@ -11,9 +11,6 @@ import { startGameAction } from "./actions/start-game/start-game"
 const useGameStore = create<IGameStore>((set, get) => ({
   ...initialGameData,
   isGameStarted:false,
-  get isPlayerTurn(){
-    return get().currentTurn === 'player'
-  },
   startGame: () => set(startGameAction()),
   endTurn: () => set(endTurnAction(get)),
   playCard: (cardId:number) => {

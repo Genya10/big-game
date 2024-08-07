@@ -33,5 +33,4 @@ export interface IGameStore extends IGameMethodsStore{
     isGameOver: boolean
     currentTurn: TPlayer
     turn: number
-    isPlayerTurn: boolean
 }

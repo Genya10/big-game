@@ -8,8 +8,8 @@ export function useEnemyTarget(){
 
     const handleSelectTarget = (targetId?: number, isHero = false) => {
         if(!cardAttackerId) return
-
-        if(currentTurn !== 'player') return    
+        if(currentTurn !== 'player') return  
+          
         if(isHero){
           attackHero(cardAttackerId)
         } else if(targetId){
