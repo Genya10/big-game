@@ -3,6 +3,7 @@ import cn from 'clsx'
 import { Badge } from "../../../../components/ui/Badge"
 import { MAX_HAND_CARDS } from "../../../../constants/core.constants"
 import { useEnemyTarget } from "../board-card/useEnemyTarget"
+import { useGameStore } from "../../../../store/game/game.store"
 
 interface IPlayer {
     player: Omit<IHero,'deck'>
@@ -10,7 +11,8 @@ interface IPlayer {
 }
 
 export function PlayerInfo({player,type}:IPlayer){
-    const {handleSelectTarget} = useEnemyTarget()
+    const { handleSelectTarget } = useEnemyTarget()
+    const { currentTurn } = useGameStore()
     const isPlayer = type === 'player'
 
     return(
@@ -18,7 +20,8 @@ export function PlayerInfo({player,type}:IPlayer){
         'left-6 bottom-6': isPlayer,
         'right-6 top-6': !isPlayer
       })}
-       onClick={()=> handleSelectTarget(undefined, true)}>
+        disabled={isPlayer || currentTurn === 'opponent'}
+        onClick={()=> handleSelectTarget(undefined, true)}>
         <img src={isPlayer 
         ? '/assets/heroes/hero.jpg'
         : '/assets/heroes/warrior.jpg'} alt={type} width={150}

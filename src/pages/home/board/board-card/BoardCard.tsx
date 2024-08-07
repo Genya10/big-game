@@ -12,10 +12,12 @@ interface IProps {
 
 export function BoardCard({ card, isPlayerSide}: IProps) {
   const {handleSelectTarget} = useEnemyTarget()
-  const {returnCard} = useGameStore()
+  const {returnCard, currentTurn} = useGameStore()
   const {cardAttackerId, setCardAttackerId} = useSelectAttacker()
 
   const handleClick = (cardId:number)=> {
+    if(currentTurn !== 'player') return
+
     if(isPlayerSide){
      if(card.isCanAttack ) {
       setCardAttackerId(cardId)
@@ -33,9 +35,10 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
     <motion.button
       className={cn("h-56 w-40 rounded-2xl", 
       { 
-       'border-2 ': isPlayerSide,
+       'border-2 border-solid transition-colors': isPlayerSide && currentTurn === 'player',
        'border-transparent': !card.isCanAttack,
-       'cursor-pointer border-2 border-solid border-green-700': card.isCanAttack && !isPlayerSelectAttacker && isPlayerSide,
+       'cursor-pointer border-2 border-solid border-green-700':
+          card.isCanAttack && !isPlayerSelectAttacker && isPlayerSide && currentTurn === 'player',
        'border-primary shadow-2xl': isPlayerSelectAttacker
       }
       )}
