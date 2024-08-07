@@ -2,9 +2,9 @@ import { Button } from "../../../components/ui/button/Button"
 import { useGameStore } from "../../../store/game/game.store"
 
 export function EndTurnButton(){
-  const {endTurn, currentTurn} = useGameStore()
+  const {endTurn, isPlayerTurn} = useGameStore()
 
-  const isOpponentTurn = currentTurn === 'opponent'
+  const isOpponentTurn = !isPlayerTurn
 
     return (
         <Button className="absolute -top-6 right-3 rounded-xl z-10" 

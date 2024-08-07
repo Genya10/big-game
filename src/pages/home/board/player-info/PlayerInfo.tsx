@@ -20,8 +20,9 @@ export function PlayerInfo({player,type}:IPlayer){
         'left-6 bottom-6': isPlayer,
         'right-6 top-6': !isPlayer
       })}
-        disabled={isPlayer || currentTurn === 'opponent'}
-        onClick={()=> handleSelectTarget(undefined, true)}>
+       disabled={isPlayer || currentTurn === 'opponent'}
+       onClick={() => isPlayer ? null : handleSelectTarget(undefined, true)}
+       >
         <img src={isPlayer 
         ? '/assets/heroes/hero.jpg'
         : '/assets/heroes/warrior.jpg'} alt={type} width={150}

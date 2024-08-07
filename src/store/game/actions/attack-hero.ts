@@ -8,7 +8,7 @@ export const attackHeroAction = (
     attackerId: number
 ):Partial<IGameStore> => {
     // Определяем, чей сейчас ход (игрока или противника)
-    const isAttackerPlayer = state.currentTurn === 'player'
+    const isAttackerPlayer = state.isPlayerTurn
     // Определяем, кто является противником в текущем ходе
     // Если ход игрока, противник - opponent, иначе - player
     const opponent = state[isAttackerPlayer ? 'opponent' : 'player']
