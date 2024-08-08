@@ -4,6 +4,8 @@ import { Badge } from "../../../../components/ui/Badge"
 import { MAX_HAND_CARDS } from "../../../../constants/core.constants"
 import { useEnemyTarget } from "../board-card/useEnemyTarget"
 import { useGameStore } from "../../../../store/game/game.store"
+import { useSelectAttacker } from "../../../../store/game/select-attacker"
+import { EnumTypeCard } from "../../../../types/card.types"
 
 interface IPlayer {
     player: Omit<IHero,'deck'>
@@ -11,14 +13,20 @@ interface IPlayer {
 }
 
 export function PlayerInfo({player,type}:IPlayer){
+    const { cardAttackerId } = useSelectAttacker()
     const { handleSelectTarget } = useEnemyTarget()
-    const { currentTurn } = useGameStore()
+    const { currentTurn, opponent } = useGameStore()
+    const opponentTaunt = opponent.deck.find(
+      card => card.type === EnumTypeCard.taunt && card.isOnBoard
+    )
     const isPlayer = type === 'player'
 
     return(
-      <button className={cn("absolute ",{
+      <button className={cn(`absolute z-[1] border-4 border-transparent
+                            transition-colors rounded-3xl`,{
         'left-6 bottom-6': isPlayer,
-        'right-6 top-6': !isPlayer
+        'right-6 top-6': !isPlayer,
+        '!border-red-400': !isPlayer && cardAttackerId && !opponentTaunt,
       })}
        disabled={isPlayer || currentTurn === 'opponent'}
        onClick={() => isPlayer ? null : handleSelectTarget(undefined, true)}

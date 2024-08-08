@@ -33,13 +33,12 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
 
   return (
     <motion.button
-      className={cn("h-56 w-40 rounded-2xl", 
+      className={cn("h-56 w-40 rounded-2xl border-2 border-transparent border-solid transition-colors", 
       { 
-       'border-2 border-solid transition-colors': isPlayerSide && currentTurn === 'player',
-       'border-transparent': !card.isCanAttack,
-       'cursor-pointer border-2 border-solid border-green-700':
+       'cursor-pointer border-2 !border-solid border-green-700':
           card.isCanAttack && !isPlayerSelectAttacker && isPlayerSide && currentTurn === 'player',
-       'border-primary shadow-2xl': isPlayerSelectAttacker
+       '!border-primary shadow-2xl': isPlayerSelectAttacker,
+       '!border-red-400': !isPlayerSide && cardAttackerId //currentTurn === 'player'
       }
       )}
       initial={{ scale: 0.7, rotate: -20, y: -100, x: -30, opacity: 0 }}
