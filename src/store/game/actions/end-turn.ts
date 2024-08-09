@@ -1,18 +1,19 @@
 import { MAX_MANA } from "../../../constants/core.constants"
 import { useNotificationStore } from "../../notification/notification.store";
-import { useGameStore } from "../game.store";
 import type { IGameCard, IGameStore, TPlayer } from "../game.types"
 import { drawCardsAction } from "./draw-cards";
 
-const getNewMana = (newTurn: TPlayer, currentTurn: number) => {
-  
-  return newTurn === "player" 
-     ? Math.min(currentTurn, MAX_MANA) 
-     : currentTurn
+const getNewMana = ( currentTurn: number) => { //newTurn: TPlayer,
+  console.log(currentTurn)
+  return Math.min(currentTurn, MAX_MANA)
+
+  //return newTurn === "player" 
+    // ? Math.min(currentTurn, MAX_MANA) 
+    // : currentTurn
 };
 
 const updateAttack = (deck: IGameCard[]) => {
-  return deck.map((card) => ({
+  return deck.map(card => ({
     ...card,
     isCanAttack: card.isOnBoard,
     isPlayedThisTurn:false
@@ -25,30 +26,41 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
   const newTurn: TPlayer =
     state.currentTurn === 'player' ? "opponent" : "player";
 
-  const newPlayerMana = getNewMana("player", state.turn);
-  const newOpponentMana = getNewMana("opponent", state.turn);
+    const isNewTurnPlayer = newTurn === 'player'
+    const newTurnNumber = isNewTurnPlayer ? state.turn + 1 : state.turn
 
+    let newPlayerMana = state.player.mana
+    let newOpponentMana = state.opponent.mana
+
+    if(isNewTurnPlayer){
+        newPlayerMana = getNewMana(newTurnNumber)
+        useNotificationStore.getState().show('Your Turn')  
+    } else {
+      newOpponentMana = getNewMana(newTurnNumber)
+    }
+
+  /*const newPlayerMana = getNewMana("player", state.turn);
+  const newOpponentMana = getNewMana("opponent", state.turn);
   if(newTurn === 'player'){
-     useNotificationStore
-    .getState().show('Your Turn')
-  }
+    useNotificationStore.getState().show('Your Turn') 
+  }*/
 
   return {
     currentTurn: newTurn,
     player: {
       ...state.player,
       mana: newPlayerMana,
-      deck: updateAttack(newTurn === 'player' 
+      deck: updateAttack(isNewTurnPlayer 
            ? drawCardsAction(state).updatedDeck
            : state.player.deck)      
     },
     opponent: {
       ...state.opponent,
       mana: newOpponentMana,
-      deck: updateAttack(newTurn === 'opponent'
+      deck: updateAttack(isNewTurnPlayer
             ? drawCardsAction(state).updatedDeck
             : state.opponent.deck), 
     },
-    turn: state.turn + 1,
+    turn: newTurnNumber,
   }
 };

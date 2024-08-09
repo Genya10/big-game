@@ -16,7 +16,6 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
   const {cardAttackerId, setCardAttackerId} = useSelectAttacker()
 
   const handleClick = (cardId:number)=> {
-    if(currentTurn !== 'player') return
 
     if(isPlayerSide){
      if(card.isCanAttack ) {
@@ -38,13 +37,14 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
        'cursor-pointer border-2 !border-solid border-green-700':
           card.isCanAttack && !isPlayerSelectAttacker && isPlayerSide && currentTurn === 'player',
        '!border-primary shadow-2xl': isPlayerSelectAttacker,
-       '!border-red-400': !isPlayerSide && cardAttackerId //currentTurn === 'player'
+       '!border-red-400': !isPlayerSide && cardAttackerId, //currentTurn === 'player'
+       'cursor-not-allowed': currentTurn !== 'player',
       }
       )}
       initial={{ scale: 0.7, rotate: -20, y: -100, x: -30, opacity: 0 }}
       animate={{ scale: 1, rotate: 0, y: 0, x: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 150, damping: 30, mass: 2 }}
-      onClick={() => handleClick(card.id)}
+      onClick={() => currentTurn !== 'player' ? null : handleClick(card.id)}
     >
       <img alt={card.name} src={card.imageUrl} draggable="false" />
     </motion.button>
