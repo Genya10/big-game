@@ -37,7 +37,7 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
        'cursor-pointer border-2 !border-solid border-green-700':
           card.isCanAttack && !isPlayerSelectAttacker && isPlayerSide && currentTurn === 'player',
        '!border-primary shadow-2xl': isPlayerSelectAttacker,
-       '!border-red-400': !isPlayerSide && cardAttackerId, //currentTurn === 'player'
+       '!border-red-400': !isPlayerSide && cardAttackerId, 
        'cursor-not-allowed': currentTurn !== 'player',
       }
       )}

@@ -32,7 +32,7 @@ export function HandCard({
   const isDisabledButton = isDisabled || currentTurn !== 'player' && !isHided
 
   console.log('HandCard rendered with values:',
-          { isHided, isDisabledButton, currentTurn, card });
+          { isHided, card });
   return (
     <motion.button
       className={cn(
@@ -43,7 +43,7 @@ export function HandCard({
         }
       )}
       style={style}
-      disabled={isDisabledButton}
+      disabled={isDisabled || isDisabledButton}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

@@ -18,7 +18,7 @@ const useGameStore = create<IGameStore>((set, get) => ({
   },
   returnCard:(cardId: number)=> {
     set(state => returnCardAction(state, cardId))
-  } ,
+  },
   attackCard: (attackerId:number, targetId: number) => {
     set(state => attackCardAction(state, attackerId, targetId))
   },

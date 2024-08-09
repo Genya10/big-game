@@ -1,4 +1,4 @@
-import { type IGameStore, IGameMethodsStore, IHero, TPlayer } from "./game.types"
+import { type IGameStore, IGameMethodsStore, IHero} from "./game.types"
 
  const initialPlayerData: IHero = {
     deck: [],
