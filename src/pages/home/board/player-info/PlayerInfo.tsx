@@ -6,6 +6,7 @@ import { useEnemyTarget } from "../board-card/useEnemyTarget"
 import { useGameStore } from "../../../../store/game/game.store"
 import { useSelectAttacker } from "../../../../store/game/select-attacker"
 import { EnumTypeCard } from "../../../../types/card.types"
+import { DamageList } from "../DamageList"
 
 interface IPlayer {
     player: Omit<IHero,'deck'>
@@ -37,7 +38,8 @@ export function PlayerInfo({player,type}:IPlayer){
          className='rounded-3xl'/>
         <div className="absolute w-full flex items-center justify-center bottom-0.5">
           <Badge value={player.health} maxValue={MAX_HAND_CARDS} color='red'/>
-        </div>       
+        </div>      
+        <DamageList id={type} isRight={isPlayer}/> 
       </button>
     )
 }

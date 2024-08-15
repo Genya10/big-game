@@ -1,9 +1,14 @@
-import { useDamageStore } from "../../../store/game/damage.store";
-import { TPlayer } from "../../../store/game/game.types";
-import { motion, AnimatePresence } from "framer-motion";
-import cn from "clsx";
+import { useDamageStore } from "../../../store/game/damage.store"
+import { TPlayer } from "../../../store/game/game.types"
+import { motion, AnimatePresence } from "framer-motion"
+import cn from "clsx"
 
-export function DamageList(id: number | TPlayer, isRight = true) {
+interface IProps {
+    id:number | TPlayer
+    isRight?: boolean
+}
+
+export function DamageList({id, isRight = true}: IProps) {
   const { damages } = useDamageStore();
 
   return (

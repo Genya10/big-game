@@ -1,13 +1,14 @@
 import { CARDS } from "../../../../constants/cards.constants"
-import type { IGameCard } from "../../game.types"
+import type { IGameCard, TPlayer } from "../../game.types"
 
-export const createDeck=(): IGameCard[]=>{
+export const createDeck=(typePlayer: TPlayer): IGameCard[]=>{
   return CARDS.map((card,index)=>({
     ...card,
     id: index + 1,
     isTaken: false,
     isOnHand:false,
     isOnBoard: false,
-    isCanAttack: false
+    isCanAttack: false,
+    isPlayedThisTurn: false
   }))
 }
