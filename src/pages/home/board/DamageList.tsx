@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import cn from "clsx"
 
 interface IProps {
-    id:number | TPlayer
+    id:string | TPlayer
     isRight?: boolean
 }
 
@@ -20,8 +20,8 @@ export function DamageList({id, isRight = true}: IProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
           className={cn(
-            "absolute top-0 w-full text-center text-red-500 font-bold",
-            isRight ? "-right-1" : "-left-1"
+            "absolute top-0 w-full text-center text-red-500 font-bold z-30",
+            isRight ? "-right-[60%]" : "-left-[60%]"
           )}
         >
           -{damages[id]}

@@ -2,17 +2,18 @@ import {create} from 'zustand'
 
 interface IDamageStore {
     damages:{
-        [key: number]:number
-        player: number
-        opponent: number
+        [key: string]:number
+        player: number  //не обязательное поле
+        opponent: number  //не обязательное поле
     }
-    addDamage:(cardId: number, damage: number) => void
+    addDamage:(cardId: string, damage: number) => void
 }
 
 export const useDamageStore = create<IDamageStore>(set => ({
  damages:{
-    player:0,
-    opponent:0
+
+    player:5,
+    opponent:4
  },
  addDamage:(cardId, damage)=>{
     set(state => ({

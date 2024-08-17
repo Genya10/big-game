@@ -6,7 +6,7 @@ export function useEnemyTarget(){
 
     const {cardAttackerId, setCardAttackerId} = useSelectAttacker()
 
-    const handleSelectTarget = (targetId?: number, isHero = false) => {
+    const handleSelectTarget = (targetId?: string, isHero = false) => {
         if(!cardAttackerId) return
         if(currentTurn !== 'player') return  
           

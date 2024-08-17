@@ -1,12 +1,12 @@
 import { IGameCard, IGameStore } from "../game.types";
 
-export const getCardById = (cardId: number, deck: IGameCard[]) =>
+export const getCardById = (cardId: string, deck: IGameCard[]) =>
   deck.find((card) => card.id === cardId);
 
 export const attackCardAction = (
   state: IGameStore,
-  attackerId: number,
-  targetId: number
+  attackerId: string,
+  targetId: string
 ) => {
   const isAttackerPlayer = state.currentTurn === 'player';
 

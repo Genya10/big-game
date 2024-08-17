@@ -11,10 +11,9 @@ const getStartCards = (deck: IGameCard[]): IGameCard[] => deck.map((card, index)
 }))
 
 export const startGameAction = (): Partial<IGameStore> => {
-    const deck = createDeck()
 
-    const playerInitialDeck = shuffle(deck)
-    const opponentInitialDeck = shuffle(deck)
+    const playerInitialDeck = shuffle(createDeck('player'))
+    const opponentInitialDeck = shuffle(createDeck('opponent'))
 
     return {
         ...initialGameData,

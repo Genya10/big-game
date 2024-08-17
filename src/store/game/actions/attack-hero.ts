@@ -5,7 +5,7 @@ import { getCardById } from "./attack-card";
 
 export const attackHeroAction = (
     state: IGameStore, 
-    attackerId: number
+    attackerId: string
 ):Partial<IGameStore> => {
     // Определяем, чей сейчас ход (игрока или противника)
     const isAttackerPlayer = state.currentTurn === 'player'

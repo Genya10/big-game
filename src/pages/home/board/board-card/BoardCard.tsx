@@ -16,7 +16,7 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
   const {returnCard, currentTurn} = useGameStore()
   const {cardAttackerId, setCardAttackerId} = useSelectAttacker()
 
-  const handleClick = (cardId:number)=> {
+  const handleClick = (cardId:string)=> {
 
     if(isPlayerSide){
      if(card.isCanAttack ) {

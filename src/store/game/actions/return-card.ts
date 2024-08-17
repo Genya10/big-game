@@ -1,6 +1,6 @@
 import type { IGameStore } from "../game.types"
 
-export const returnCardAction = (state:IGameStore, cardId: number):
+export const returnCardAction = (state:IGameStore, cardId: string):
   Partial<IGameStore>=> {
 
   const currentPlayer = state.currentTurn === 'player' ? state.player : state.opponent       
