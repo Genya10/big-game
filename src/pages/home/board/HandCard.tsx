@@ -31,8 +31,6 @@ export function HandCard({
 
   const isDisabledButton = isDisabled || currentTurn !== 'player' && !isHided
 
-  console.log('HandCard rendered with values:',
-          { isHided, card });
   return (
     <motion.button
       className={cn(

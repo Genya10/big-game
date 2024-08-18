@@ -20,7 +20,7 @@ export function DamageList({id, isRight = true}: IProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
           className={cn(
-            "absolute top-0 w-full text-center text-red-500 font-bold z-30",
+            "absolute top-2 w-full text-center text-red-500 font-bold text-xl z-30",
             isRight ? "-right-[60%]" : "-left-[60%]"
           )}
         >

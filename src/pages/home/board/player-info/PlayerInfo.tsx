@@ -1,7 +1,7 @@
 import type { IHero, TPlayer } from "../../../../store/game/game.types"
 import cn from 'clsx'
 import { Badge } from "../../../../components/ui/Badge"
-import { MAX_HAND_CARDS } from "../../../../constants/core.constants"
+import { MAX_HP } from "../../../../constants/core.constants"
 import { useEnemyTarget } from "../board-card/useEnemyTarget"
 import { useGameStore } from "../../../../store/game/game.store"
 import { useSelectAttacker } from "../../../../store/game/select-attacker"
@@ -37,7 +37,7 @@ export function PlayerInfo({player,type}:IPlayer){
         : '/assets/heroes/warrior.jpg'} alt={type} width={150}
          className='rounded-3xl'/>
         <div className="absolute w-full flex items-center justify-center bottom-0.5">
-          <Badge value={player.health} maxValue={MAX_HAND_CARDS} color='red'/>
+          <Badge value={player.health} maxValue={MAX_HP} color='red'/>
         </div>      
         <DamageList id={type} isRight={isPlayer}/> 
       </button>

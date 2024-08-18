@@ -1,5 +1,6 @@
 import { EnumTypeCard } from "../../../types/card.types";
 import { useNotificationStore } from "../../notification/notification.store";
+import { useDamageStore } from "../damage.store";
 import { IGameStore } from "../game.types";
 import { getCardById } from "./attack-card";
 
@@ -29,6 +30,10 @@ export const attackHeroAction = (
     // Устанавливаем флаг, чтобы карта не могла атаковать повторно в этом ходу
          attacker.isCanAttack = false
          console.log(opponent.health, 'opponent.health')
+
+        useDamageStore.getState().addDamage(isAttackerPlayer 
+                       ? 'opponent': 'player', attacker.attack)
+                       
     // Проверяем, закончилось ли здоровье противника
          if(opponent.health <= 0){
     // Если здоровье противника <= 0, игра заканчивается

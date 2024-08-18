@@ -1,3 +1,4 @@
+import { useDamageStore } from "../damage.store";
 import { IGameCard, IGameStore } from "../game.types";
 
 export const getCardById = (cardId: string, deck: IGameCard[]) =>
@@ -26,6 +27,8 @@ export const attackCardAction = (
     target.health -= attacker.attack;
     // После атаки атакующий больше не может атаковать
     attacker.isCanAttack = false;
+
+    useDamageStore.getState().addDamage(targetId, attacker.attack)
 
     // Проверяем, осталось ли здоровье у цели
     if (target.health <= 0) {

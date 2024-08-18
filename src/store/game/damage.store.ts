@@ -11,9 +11,8 @@ interface IDamageStore {
 
 export const useDamageStore = create<IDamageStore>(set => ({
  damages:{
-
-    player:5,
-    opponent:4
+    player: 0,
+    opponent: 0
  },
  addDamage:(cardId, damage)=>{
     set(state => ({
@@ -22,13 +21,13 @@ export const useDamageStore = create<IDamageStore>(set => ({
             [cardId]: damage,
         },
     }))
-    setTimeout(()=> {
+    setTimeout(()=>{
         set(state => ({
             damages:{
                 ...state.damages,
                 [cardId]: 0,
             },
         }))
-    }, 1000)
+    },1000)
  },
 }))
