@@ -8,35 +8,24 @@ export const attackHeroAction = (
     state: IGameStore, 
     attackerId: string
 ):Partial<IGameStore> => {
-    // Определяем, чей сейчас ход (игрока или противника)
-    const isAttackerPlayer = state.currentTurn === 'player'
-    // Определяем, кто является противником в текущем ходе
-    // Если ход игрока, противник - opponent, иначе - player
-    const opponent = state[isAttackerPlayer ? 'opponent' : 'player']
-    
-    // Получаем атакующую карту из колоды атакующего
-    // Если ход игрока, ищем в колоде игрока, иначе - в колоде противника
+    const isAttackerPlayer = true
     const attacker = getCardById(
         attackerId,
-        isAttackerPlayer ? state.player.deck : state.opponent.deck
+        state.player.deck
     )
 
-    const opponentTaunt = opponent.deck.find(
+    const opponentTaunt = state.opponent.deck.find(
         card => card.type === EnumTypeCard.taunt && card.isOnBoard)
-    //Если атакующая карта существует,может атаковать и нет карты "таунт" у противника    
+    
         if(attacker && attacker.isCanAttack && !opponentTaunt){
-    // Уменьшаем здоровье противника на величину атаки атакующей карты
-         opponent.health -= attacker.attack
-    // Устанавливаем флаг, чтобы карта не могла атаковать повторно в этом ходу
+    
+         state.opponent.health -= attacker.attack    
          attacker.isCanAttack = false
-         console.log(opponent.health, 'opponent.health')
 
-        useDamageStore.getState().addDamage(isAttackerPlayer 
-                       ? 'opponent': 'player', attacker.attack)
-                       
-    // Проверяем, закончилось ли здоровье противника
-         if(opponent.health <= 0){
-    // Если здоровье противника <= 0, игра заканчивается
+        useDamageStore.getState()
+                      .addDamage('opponent', attacker.attack)
+                        
+         if(state.opponent.health <= 0){
             state.isGameOver = true 
             state.isGameStarted = false
 
@@ -49,7 +38,6 @@ export const attackHeroAction = (
          }
         }
 
-     // Возвращаем обновленное состояние игрока, противника и статус игры
     return { player: state.player, 
              opponent: state.opponent, 
              isGameOver:state.isGameOver,
