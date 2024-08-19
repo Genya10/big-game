@@ -8,34 +8,35 @@ export const attackHeroAction = (
     state: IGameStore, 
     attackerId: string
 ):Partial<IGameStore> => {
-    const isAttackerPlayer = true
+    const isAttackerPlayer = state.currentTurn === 'player'
+    const opponent = isAttackerPlayer ? state.opponent : state.player
+
     const attacker = getCardById(
         attackerId,
-        state.player.deck
+        isAttackerPlayer ? state.player.deck : state.opponent.deck
     )
 
-    const opponentTaunt = state.opponent.deck.find(
+    const opponentTaunt = opponent.deck.find(
         card => card.type === EnumTypeCard.taunt && card.isOnBoard)
     
-        if(attacker && attacker.isCanAttack && !opponentTaunt){
-    
-         state.opponent.health -= attacker.attack    
+        if(attacker && attacker.isCanAttack && !opponentTaunt){    
+         opponent.health -= attacker.attack    
          attacker.isCanAttack = false
 
-        useDamageStore.getState()
-                      .addDamage('opponent', attacker.attack)
+         useDamageStore.getState()
+                       .addDamage(isAttackerPlayer ?'opponent' : 'player', attacker.attack)
                         
-         if(state.opponent.health <= 0){
+         if(opponent.health <= 0){
             state.isGameOver = true 
             state.isGameStarted = false
 
             useNotificationStore
-            .getState()
-            .show(
+               .getState()
+               .show(
                 isAttackerPlayer ? 'You win!' : 'You lose :(',
                 isAttackerPlayer ? 'win' : 'lose'
             )
-         }
+          }
         }
 
     return { player: state.player, 

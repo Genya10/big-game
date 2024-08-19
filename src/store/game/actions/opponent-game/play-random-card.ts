@@ -1,16 +1,18 @@
-import type { IGameCard } from "../../game.types"
-import random from 'lodash/random'
+import type { IGameStore } from "../../game.types";
+import random from "lodash/random";
+import { playCardAction } from "../play-card";
 
-export const playRandomCard = (deck:IGameCard[], mana: number): IGameCard | null => {
-  const playableCards = deck.filter(card => 
-            !card.isOnBoard && card.isOnHand && card.mana <= mana)
+export const playRandomCard = (
+  state: IGameStore,
+  mana: number
+): Partial<IGameStore> => {
+  const playableCards = state.opponent.deck.filter(
+    (card) => !card.isOnBoard && card.isOnHand && card.mana <= mana
+  );
 
-    if(playableCards.length === 0) return null
+  if (playableCards.length === 0) return state;
 
-    const randomCard = playableCards[random(playableCards.length)]
-    randomCard.isOnBoard = true
-    randomCard.isPlayedThisTurn = true
-    randomCard.isOnHand = false
+  const randomCard = playableCards[random(playableCards.length)];
 
-    return randomCard
+  return playCardAction(state, randomCard.id);
 }
