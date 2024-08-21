@@ -1,8 +1,8 @@
 import { MAX_MANA } from "../../../constants/core.constants"
-import { useNotificationStore } from "../../notification/notification.store";
+import { useNotificationStore } from "../../notification/notification.store"
 import type { IGameCard, IGameStore, TPlayer } from "../game.types"
-import { drawCardsAction } from "./draw-cards";
-import { randomOpponentPlay } from "./opponent-game/random-opponent-play";
+import { drawCardsAction } from "./draw-cards"
+import { randomOpponentPlay } from "./opponent-game/random-opponent-play"
 
 const getNewMana = ( currentTurn: number) => {
 
@@ -13,12 +13,11 @@ const updateAttack = (deck: IGameCard[]) => {
   return deck.map(card => ({
     ...card,
     isCanAttack: card.isOnBoard,
-    isPlayedThisTurn:false
+    isPlayedThisTurn: false
   }));
 };
 
-export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
-  const state = get()
+export const endTurnAction = (state:IGameStore): Partial<IGameStore> => {
 
   const newTurn: TPlayer =
     state.currentTurn === 'player' ? "opponent" : "player";
@@ -42,22 +41,27 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
     player: {
       ...state.player,
       mana: newPlayerMana,
-      deck: updateAttack(isNewTurnPlayer
-           ? drawCardsAction(state).updatedDeck
-           : state.player.deck)      
+      deck: updateAttack(state.player.deck)     
     },
     opponent: {
       ...state.opponent,
       mana: newOpponentMana,
-      deck: updateAttack(!isNewTurnPlayer
-            ? drawCardsAction(state).updatedDeck
-            : state.opponent.deck), 
+      deck: updateAttack(state.opponent.deck)
     },
     turn: newTurnNumber,
   }
   
   if(!isNewTurnPlayer){
-    return randomOpponentPlay(updatedState)
+    updatedState.opponent = {
+      ...updatedState.opponent,
+      deck: drawCardsAction(updatedState.opponent)
+    }
+  } else {
+    updatedState.player = {
+      ...updatedState.player,
+      deck: drawCardsAction(updatedState.player)
+    }
   }
+  
   return updatedState
 };
