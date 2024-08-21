@@ -6,7 +6,7 @@ import random from 'lodash/random'
 import { attackHeroAction } from "../attack-hero"
 import { MAX_MANA } from "../../../../constants/core.constants"
 
-export const randomOpponentPlay = (state: IGameStore): Partial<IGameStore> => {
+export const randomOpponentPlay = (state: IGameStore)=> {
     const opponent = state.opponent
 
     opponent.deck
@@ -21,7 +21,12 @@ export const randomOpponentPlay = (state: IGameStore): Partial<IGameStore> => {
             return
         }
 
-        if(random(10) > 5 && state.player.deck.length){
+        if(!state.player.deck.filter(card => card.isOnBoard).length){
+            state = {...state, ...attackHeroAction(state, card.id)}
+            return
+        }
+
+        if(random(10) > 5 && state.player.deck){
             const targetId = state.player.deck[random(state.player.deck.length)].id
             state = {...state,...attackCardAction(state, card.id, targetId)}
         } else {
@@ -45,6 +50,5 @@ export const randomOpponentPlay = (state: IGameStore): Partial<IGameStore> => {
             ...state.opponent,
             mana: 0
         },
-        currentTurn:'player'
     }
 }

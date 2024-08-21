@@ -5,14 +5,18 @@ import { playCardAction } from "../play-card";
 export const playRandomCard = (
   state: IGameStore,
   mana: number
-)=> {
+) => {
   const playableCards = state.opponent.deck.filter(
-    (card) => !card.isOnBoard && card.isOnHand && card.mana <= mana
+    card => !card.isOnBoard && card.isOnHand && card.mana <= mana
   );
 
-  if (playableCards.length === 0) return state;
+  if (playableCards.length === 0) return state
 
-  const randomCard = playableCards[random(playableCards.length)];
+  const randomIndex = random(playableCards.length - 1)
 
-  return playCardAction(state, randomCard.id);
+  const randomCard = playableCards[randomIndex]
+
+  const newState = playCardAction(state, randomCard.id)
+
+  return newState
 }

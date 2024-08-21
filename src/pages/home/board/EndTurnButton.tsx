@@ -13,7 +13,7 @@ export function EndTurnButton(){
             onClick={isOpponentTurn ? () => null : endTurn}
             disabled={isOpponentTurn}
         >  
-        End Turn
+        {isOpponentTurn ? 'Opponent Turn' : 'End Turn'}
         </Button>
     )
 }
