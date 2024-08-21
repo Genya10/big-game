@@ -5,7 +5,7 @@ import { playCardAction } from "../play-card";
 export const playRandomCard = (
   state: IGameStore,
   mana: number
-): Partial<IGameStore> => {
+)=> {
   const playableCards = state.opponent.deck.filter(
     (card) => !card.isOnBoard && card.isOnHand && card.mana <= mana
   );
