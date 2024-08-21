@@ -2,6 +2,7 @@ import { MAX_MANA } from "../../../constants/core.constants"
 import { useNotificationStore } from "../../notification/notification.store";
 import type { IGameCard, IGameStore, TPlayer } from "../game.types"
 import { drawCardsAction } from "./draw-cards";
+import { randomOpponentPlay } from "./opponent-game/random-opponent-play";
 
 const getNewMana = ( currentTurn: number) => {
 
@@ -35,7 +36,8 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
       newOpponentMana = getNewMana(newTurnNumber)
     }
 
-  return {
+   const updatedState = {
+    ...state,
     currentTurn: newTurn,
     player: {
       ...state.player,
@@ -53,4 +55,9 @@ export const endTurnAction = (get: () => IGameStore): Partial<IGameStore> => {
     },
     turn: newTurnNumber,
   }
+  
+  if(!isNewTurnPlayer){
+    return randomOpponentPlay(updatedState)
+  }
+  return updatedState
 };

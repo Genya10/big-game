@@ -8,11 +8,11 @@ export function EndTurnButton(){
 
     return (
         <Button className="absolute -top-6 right-3 rounded-xl z-10" 
-            onClick={endTurn}
-            variant='primary'
-                //variant={isOpponentTurn ? 'disabled' : 'primary'} 
-                //onClick={isOpponentTurn ? () => null : endTurn}
-                //disabled={isOpponentTurn}
+           // onClick={endTurn}
+           // variant='primary'
+            variant={isOpponentTurn ? 'disabled' : 'primary'} 
+            onClick={isOpponentTurn ? () => null : endTurn}
+            disabled={isOpponentTurn}
         >  
         End Turn
         </Button>
