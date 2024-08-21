@@ -2,32 +2,33 @@ import {create} from 'zustand'
 
 interface IDamageStore {
     damages:{
-        [key: string]:number
-        player: number  //не обязательное поле
-        opponent: number  //не обязательное поле
+        [key: string] : { id: string; amount: number }[]
     }
     addDamage:(cardId: string, damage: number) => void
 }
 
 export const useDamageStore = create<IDamageStore>(set => ({
- damages:{
-    player: 0,
-    opponent: 0
- },
- addDamage:(cardId, damage)=>{
+ damages:{}, 
+ addDamage:(cardId, damage) => {
+    const damageId = `${cardId}-${Date.now()}`
+
     set(state => ({
         damages:{
             ...state.damages,
-            [cardId]: damage,
+            [cardId]: [
+                ...(state.damages[cardId] || []),
+                {id: damageId, amount: damage},
+            ],
         },
     }))
+
     setTimeout(()=>{
         set(state => ({
             damages:{
                 ...state.damages,
-                [cardId]: 0,
+                [cardId]: state.damages[cardId].filter(d => d.id !== damageId),
             },
         }))
-    },1000)
- },
+    }, 2000)
+  },
 }))

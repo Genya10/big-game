@@ -24,10 +24,10 @@ export function PlayerInfo({player,type}:IPlayer){
 
     return(
       <button className={cn(`absolute z-[1] border-4 border-transparent
-                            transition-colors rounded-3xl`,{
+                            transition-colors rounded-3xl cursor-default`,{
         'left-6 bottom-6': isPlayer,
         'right-6 top-6': !isPlayer,
-        '!border-red-400': !isPlayer && cardAttackerId && !opponentTaunt,
+        '!border-red-400 !cursor-pointer': !isPlayer && cardAttackerId && !opponentTaunt,
       })}
        disabled={isPlayer || currentTurn === 'opponent'}
        onClick={() => isPlayer ? null : handleSelectTarget(undefined, true)}

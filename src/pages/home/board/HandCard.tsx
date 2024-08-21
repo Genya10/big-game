@@ -24,7 +24,7 @@ export function HandCard({
   index,
   arrayLength,
 }: IProps) {
-  const { currentTurn } = useGameStore()
+  const { currentTurn, player } = useGameStore()
   const [isHovered, setIsHovered] = useState(false);
 
   const { rotate, translateY } = getStyleRotation(index, arrayLength, !isHided);
@@ -38,6 +38,7 @@ export function HandCard({
         {
           "opacity-60": isDisabled,
           "cursor-pointer": !isHided && !isDisabledButton,
+          "!border-green-400":!isHided && currentTurn === 'player' && player.mana >= card.mana
         }
       )}
       style={style}
