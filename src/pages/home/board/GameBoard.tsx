@@ -65,7 +65,7 @@ export function GameBoard() {
         <div className="absolute -bottom-12  w-full">
           <div className="flex items-center justify-center">
             {player.deck
-              .filter((card) => !card.isOnHand)
+              .filter((card) => card.isOnHand)
               .map((card, index, array) => (
                 <HandCard
                   card={card}

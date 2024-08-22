@@ -22,11 +22,11 @@ const useGameStore = create<IGameStore>(set => ({
 
         setTimeout(() => {
           set(() => endTurnAction(updateState))
-      }, 2500)
+      }, 2000)
 
       return updateState
     })
-  }, 3000)
+  }, 2500)
   },
 
   playCard: (cardId:string) => {
