@@ -4,6 +4,14 @@
        ease-in-out cursor-pointer;
      box-shadow: -1px 3px 0 #b23909;
 
+     @media(max-width: 992px){
+       @apply text-lg py-2 px-4
+     }
+
+     @media(max-width: 480px){
+        @apply text-base py-1 px-3
+     }
+
      &:hover {
         @apply text-brown-600;
         box-shadow: 0 2px 0 #b23909;
