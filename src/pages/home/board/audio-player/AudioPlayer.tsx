@@ -25,7 +25,8 @@ export function AudioPlayer(){
     return(
         <Button variant='gray' isCircle 
                 onClick={handlePlayPause}
-                className='absolute right-8 bottom-28 z-20 max-lg:right-4 max-lg:bottom-32'>
+                className='absolute right-8 bottom-28 z-20 
+                     max-lg:right-4 max-lg:bottom-32 max-md:!bottom-36'>
          <audio ref={audioRef} loop>
            <source src='/assets/music/main.mp3' type='audio/mp3'/>
            Your browser does not support the audio element

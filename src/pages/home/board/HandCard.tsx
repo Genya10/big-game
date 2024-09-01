@@ -34,7 +34,7 @@ export function HandCard({
   return (
     <motion.button
       className={cn(
-        "h-40 w-28 shadow inline-block -ml-8 rounded-2xl cursor-default",
+        "h-40 w-28 max-md:h-36 max-md:w-24 shadow inline-block -ml-8 rounded-2xl cursor-default",
         {
           "opacity-60": isDisabled,
           "cursor-pointer": !isHided && !isDisabledButton,

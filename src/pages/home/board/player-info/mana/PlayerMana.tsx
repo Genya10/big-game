@@ -14,8 +14,8 @@ export function PlayerMana({ currentMana, maxMana, typePlayer }: IProps) {
   return (
     <div 
          className={cn("flex items-center absolute",{
-          "right-6 bottom-14 max-lg:bottom-20": isPlayer,
-          "left-4 top-12 max-lg:top-20": !isPlayer
+          "right-6 bottom-14 max-lg:bottom-20 max-md:!bottom-24": isPlayer,
+          "left-4 top-12 max-lg:top-20 max-md:!top-24": !isPlayer
          })}
          >
       <Badge value={currentMana} maxValue={maxMana} color="blue" />

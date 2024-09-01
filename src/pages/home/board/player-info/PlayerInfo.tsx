@@ -24,7 +24,7 @@ export function PlayerInfo({player,type}:IPlayer){
 
     return(
       <button className={cn(`absolute z-[1] border-4 border-transparent
-                            transition-colors rounded-3xl cursor-default`,{
+                            transition-colors rounded-3xl cursor-default max-md:w-32`,{
         'left-6 bottom-6 max-lg:left-2 max-lg:bottom-1': isPlayer,
         'right-6 top-6 max-lg:right-2 max-lg:top-1': !isPlayer,
         '!border-red-400 !cursor-pointer': !isPlayer && cardAttackerId && !opponentTaunt,

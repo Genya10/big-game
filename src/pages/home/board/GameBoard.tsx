@@ -23,7 +23,7 @@ export function GameBoard() {
                maxMana={MAX_MANA} 
                typePlayer='opponent'/>
        
-          <div className="absolute w-full -top-20">
+          <div className="absolute w-full -top-20 max-md:-top-24">
             <div className="flex items-center justify-center ">
               {opponent.deck
                 .filter(card => card.isOnHand)
@@ -62,7 +62,7 @@ export function GameBoard() {
 
                <AudioPlayer/>
 
-        <div className="absolute -bottom-12  w-full">
+        <div className="absolute -bottom-12 max-md:-bottom-20  w-full">
           <div className="flex items-center justify-center">
             {player.deck
               .filter((card) => card.isOnHand)
