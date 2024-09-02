@@ -44,7 +44,7 @@ export function GameBoard() {
 
       </SectionSide>
 
-    <div className="absolute top-[51%] left-0 w-full">
+    <div className="absolute top-[51%] max-md:top-[60%] left-0 w-full">
       <hr className="opacity-60 w-11/12"/>
       <EndTurnButton/>
     </div>

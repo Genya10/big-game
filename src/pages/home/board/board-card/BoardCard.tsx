@@ -33,7 +33,7 @@ export function BoardCard({ card, isPlayerSide}: IProps) {
 
   return (
     <motion.button
-      className={cn(`h-56 w-40 max-md:h-40 max-md:w-32 rounded-2xl border-2 border-transparent
+      className={cn(`h-56 w-40 max-md:h-32 max-md:w-24 rounded-2xl border-2 border-transparent
                      border-solid transition-colors relative`, 
       { 
        'cursor-pointer border-2 !border-solid border-green-700':
